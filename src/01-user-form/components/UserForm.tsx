@@ -13,6 +13,9 @@ export const UserForm = ({ onUserAdd }: Props) => {
     event.preventDefault();
 
     onUserAdd({ name, email });
+
+    setName("");
+    setEmail("");
   };
 
   return (
