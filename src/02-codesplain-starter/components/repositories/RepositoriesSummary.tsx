@@ -1,15 +1,11 @@
 import { StarIcon } from "@primer/octicons-react"
+import type { Repository } from "../../domain/Repository"
 
 interface Props {
-  repository: {
-    stargazers_count: number;
-    open_issues: number;
-    forks: number;
-    language: string;
-  };
+  repository: Repository;
 }
 
-function RepositoriesSummary({ repository }: Props) {
+const RepositoriesSummary = ({ repository }: Props) => {
   const { stargazers_count, open_issues, forks } = repository;
 
   return (
@@ -22,6 +18,6 @@ function RepositoriesSummary({ repository }: Props) {
       <div>{repository.language}</div>
     </div>
   );
-}
+};
 
 export default RepositoriesSummary;

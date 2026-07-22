@@ -12,8 +12,10 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
+    "@exuanbo/file-icons-js": "^3.3.0",
     "@primer/octicons-react": "^19.29.2",
     "@tailwindcss/vite": "^4.3.2",
+    "classnames": "^2.5.1",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-router": "^8.2.0",
