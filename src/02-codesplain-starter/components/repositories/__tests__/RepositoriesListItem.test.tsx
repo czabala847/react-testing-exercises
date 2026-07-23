@@ -3,6 +3,14 @@ import { MemoryRouter } from "react-router"
 import type { Repository } from "../../../domain/Repository"
 import RepositoriesListItem from "../RepositoriesListItem"
 
+//another way to avoid the act warning is by creating a mock
+// jest.mock("../../../tree/FileIcon", () => {
+//   //content of FileIcon.tsx
+//   return () => {
+//     return 'File Icon componente'
+//   }
+// })
+
 const renderComponent = () => {
   const repository: Repository = {
     full_name: "test repo",
@@ -20,12 +28,18 @@ const renderComponent = () => {
       <RepositoriesListItem repository={repository} />
     </MemoryRouter>,
   );
+
+  return { repository };
 };
 
 describe("RepositoriesListItem", () => {
   it("shows a link to the github homepage of the repository", async () => {
-    renderComponent();
+    const { repository } = renderComponent();
 
+    // with this we resolve the act warning
     await screen.findByRole("img", { name: "TypeScript" });
+
+    const link = screen.getByRole("link");
+    expect(link).toHaveAttribute("href", repository.html_url);
   });
 });
