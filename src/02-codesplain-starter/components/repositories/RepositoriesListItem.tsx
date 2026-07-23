@@ -1,3 +1,4 @@
+import { MarkGithubIcon } from "@primer/octicons-react"
 import { Link } from "react-router"
 import type { Repository } from "../../domain/Repository"
 import FileIcon from "../../tree/FileIcon"
@@ -19,6 +20,12 @@ const RepositoriesListItem = ({ repository }: Props) => {
         </Link>
         <p className="text-gray-500 italic py-1">{description}</p>
         <RepositoriesSummary repository={repository} />
+      </div>
+
+      <div className="grow flex items-center justify-end pr-2">
+        <a href={repository.html_url} aria-label="github repository">
+          <MarkGithubIcon />
+        </a>
       </div>
     </div>
   );

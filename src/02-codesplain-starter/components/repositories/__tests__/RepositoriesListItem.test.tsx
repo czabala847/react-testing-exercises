@@ -39,7 +39,32 @@ describe("RepositoriesListItem", () => {
     // with this we resolve the act warning
     await screen.findByRole("img", { name: "TypeScript" });
 
-    const link = screen.getByRole("link");
+    const link = screen.getByRole("link", {
+      name: /github repository/i,
+    });
     expect(link).toHaveAttribute("href", repository.html_url);
+  });
+
+  it("shows a fileicon with the appropiate icon", async () => {
+    renderComponent();
+
+    // with this we resolve the act warning
+    const icon = await screen.findByRole("img", { name: "TypeScript" });
+    expect(icon).toHaveClass("icon");
+  });
+
+  it("shows a link to the code editor page", async () => {
+    const { repository } = renderComponent();
+
+    // with this we resolve the act warning
+    await screen.findByRole("img", { name: "TypeScript" });
+
+    const link = await screen.findByRole("link", {
+      name: new RegExp(repository.owner.login),
+    });
+    expect(link).toHaveAttribute(
+      "href",
+      `/repositories/${repository.full_name}`,
+    );
   });
 });
