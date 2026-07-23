@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 import { MemoryRouter } from "react-router"
 import type { Repository } from "../../../domain/Repository"
 import RepositoriesListItem from "../RepositoriesListItem"
@@ -18,12 +18,14 @@ const renderComponent = () => {
   render(
     <MemoryRouter>
       <RepositoriesListItem repository={repository} />
-    </MemoryRouter>
+    </MemoryRouter>,
   );
 };
 
 describe("RepositoriesListItem", () => {
-  it("shows a link to the github homepage of the repository", () => {
+  it("shows a link to the github homepage of the repository", async () => {
     renderComponent();
+
+    await screen.findByRole("img", { name: "TypeScript" });
   });
 });
