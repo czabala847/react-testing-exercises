@@ -9,4 +9,5 @@ export interface Repository {
   stargazers_count: number;
   open_issues: number;
   forks: number;
+  html_url: string;
 }

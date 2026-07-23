@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react"
+import type { Repository } from '../../../domain/Repository'
 import RepositoriesSummary from "../RepositoriesSummary"
 
 describe("RepositoriesSummary", () => {
@@ -9,7 +10,7 @@ describe("RepositoriesSummary", () => {
       forks: 3,
       language: "TypeScript",
     };
-    render(<RepositoriesSummary repository={repository} />);
+    render(<RepositoriesSummary repository={repository as Repository} />);
 
     for (const key in repository) {
       const value = repository[key as keyof typeof repository];
