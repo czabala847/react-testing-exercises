@@ -22,6 +22,7 @@ const renderComponent = () => {
     open_issues: 5,
     forks: 3,
     html_url: "https://github.com/test/repo",
+    id: 1,
   };
   render(
     <MemoryRouter>
