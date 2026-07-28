@@ -1,35 +1,57 @@
 import { render, screen } from "@testing-library/react"
-import { http, HttpResponse } from "msw"
-import { setupServer } from "msw/node"
 import { MemoryRouter } from "react-router"
+import { createServer } from '../../../test/server'
 import HomeRoute from "../HomeRoute"
 
-const handlers = [
-  http.get("/api/repositories", ({ request }) => {
-    const query = new URL(request.url).searchParams.get("q");
+// const handlers = [
+//   http.get("/api/repositories", ({ request }) => {
+//     const query = new URL(request.url).searchParams.get("q");
 
-    const language = query?.split("language:")[1];
+//     const language = query?.split("language:")[1];
 
-    return HttpResponse.json({
-      items: [
-        {
-          id: 1,
-          full_name: `${language}_one`,
-        },
-        {
-          id: 2,
-          full_name: `${language}_two`,
-        },
-      ],
-    });
-  }),
-];
+//     return HttpResponse.json({
+//       items: [
+//         {
+//           id: 1,
+//           full_name: `${language}_one`,
+//         },
+//         {
+//           id: 2,
+//           full_name: `${language}_two`,
+//         },
+//       ],
+//     });
+//   }),
+// ];
 
-const server = setupServer(...handlers);
+// const server = setupServer(...handlers);
 
-beforeAll(() => server.listen());
-afterEach(() => server.resetHandlers());
-afterAll(() => server.close());
+// beforeAll(() => server.listen());
+// afterEach(() => server.resetHandlers());
+// afterAll(() => server.close());
+
+createServer([
+  {
+    path: "/api/repositories",
+    method: "get",
+    res: ({ request }) => {
+      const query = new URL(request.url).searchParams.get("q");
+      const language = query?.split("language:")[1];
+      return {
+        items: [
+          {
+            id: 1,
+            full_name: `${language}_one`,
+          },
+          {
+            id: 2,
+            full_name: `${language}_two`,
+          },
+        ],
+      };
+    },
+  }
+])
 
 describe("HomeRoute", () => {
   it("renders two links for each languange", async () => {
