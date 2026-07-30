@@ -9,7 +9,7 @@ export const CharacterItem: React.FC<Props> = ({ character }) => {
   return (
     <div>
       <img src={character.image} alt={character.name} />
-      <p>{character.name}</p>
+      <h2>{character.name}</h2>
       <p>{character.location.name}</p>
     </div>
   )
