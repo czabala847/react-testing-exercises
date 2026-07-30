@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand --no-cache"
   },
   "dependencies": {
     "@exuanbo/file-icons-js": "^3.3.0",
