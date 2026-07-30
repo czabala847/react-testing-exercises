@@ -1,6 +1,6 @@
-import { http, HttpResponse } from "msw";
-import { setupServer } from "msw/node";
-import type { HttpHandler, HttpResponseResolver } from "msw";
+import type { HttpHandler, HttpResponseResolver } from "msw"
+import { http, HttpResponse } from "msw"
+import { setupServer } from "msw/node"
 
 type HttpMethod = "get" | "post" | "put" | "patch" | "delete" | "head";
 
@@ -22,4 +22,8 @@ export function createServer(handlerConfig: HandlerConfig[]) {
   beforeAll(() => server.listen());
   afterEach(() => server.resetHandlers());
   afterAll(() => server.close());
+
+  return {
+    server,
+  }
 }
